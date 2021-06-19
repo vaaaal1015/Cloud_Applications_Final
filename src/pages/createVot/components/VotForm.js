@@ -1,35 +1,43 @@
 import React from "react";
-import { Form, Card, Button } from "react-bootstrap";
+import { useState } from "react";
+import { Card, Button } from "react-bootstrap";
+import VotTitle from "./VotTitle";
+import OptionList from "./OptionList";
 
 const VotForm = () => {
+    const [options, setOptions] = useState(["", ""])
+
+    const [title, setTitle] = useState("")
+
+    function log() {
+        console.log("title", title);
+        console.log("options", options);
+    }
+
+    function addOption() {
+        setOptions((prev) => {
+            return [...prev, ""]
+        })
+    }
 
     return (
         <React.Fragment>
-            <Card style={{ width: "80%", margin: "auto", boxShadow: "4px 8px 16px 0 rgba(0, 0, 0, 0.5)" }}>
+            <Card style={{ width: "60%", margin: "auto", boxShadow: "4px 8px 16px 0 rgba(0, 0, 0, 0.5)" }}>
                 <Card.Body>
-                    <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>
-                                <h1>投票標題</h1>
-                            </Form.Label>
-                            <Form.Control type="text" placeholder="我是標題" />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>選項{1}</Form.Label>
-                            <Form.Control type="text" placeholder={"Password " + 1} />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Check me out" />
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
+                    <VotTitle text={title} setTitle={setTitle} />
+                    <OptionList options={options} setOptions={setOptions} />
+                    <Button className="myFont" size="sm" variant="outline-success" onClick={addOption} style={{ width: "auto" }}>
+                        增加選項
+                    </Button>
                 </Card.Body>
+                <Card.Footer className="text-center myFont">
+                    <Button variant="success" size="lg" onClick={log} style={{ width: "80%" }}>
+                        建立投票
+                    </Button>
+                </Card.Footer>
             </Card>
-        </React.Fragment>
+        </React.Fragment >
     );
-}
+};
 
 export default VotForm;

@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import "./index.css"
 
-import HomePage from "./pages/home/homePage"
+// import HomePage from "./pages/home/homePage"
 import CreateVot from "./pages/createVot/createVotPage"
 
 ReactDOM.render(

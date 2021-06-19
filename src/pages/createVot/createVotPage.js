@@ -10,6 +10,6 @@ const CreateVot = () => {
             <VotForm />
         </React.Fragment>
     );
-}
+};
 
 export default CreateVot;
