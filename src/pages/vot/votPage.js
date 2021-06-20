@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Bar from "../components/Bar"
-import Vor from "./components/vot"
+import Vot from "./components/vot"
+import { useParams } from "react-router-dom";
 
 const VotPage = () => {
+    let { id } = useParams();
+
+    useEffect(() => {
+        console.log(id);
+    }, [id]);
 
     return (
         <React.Fragment>
             <Bar />
-            <Vor />
+            <Vot />
         </React.Fragment>
     );
 };

@@ -1,7 +1,14 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
-const VotCard = () => {
+const VotCard = ({ id, title }) => {
+    const history = useHistory();
+
+    const routeChange = () => {
+        const path = "vot/" + id;
+        history.push(path);
+    }
 
     const [cardStyle, setCardStyle] = React.useState({
         marginLeft: "auto",
@@ -22,10 +29,6 @@ const VotCard = () => {
         })
     }
 
-    function click() {
-        console.log("click");
-    }
-
     return (
         <React.Fragment>
             <Card
@@ -34,13 +37,13 @@ const VotCard = () => {
                 style={cardStyle}
                 onMouseEnter={up}
                 onMouseLeave={down}
-                onClick={click}
+                onClick={routeChange}
                 className="myFont"
             >
-                {/* <Card.Header>id</Card.Header> */}
+                {/* <Card.Header>{id}</Card.Header> */}
                 <Card.Body>
                     <Card.Text style={{ fontSize: "25px", padding: "45px 25px" }}>
-                        Some quick example text to build on the card title and
+                        {title}
                     </Card.Text>
                 </Card.Body>
             </Card>

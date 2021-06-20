@@ -19,6 +19,7 @@ ReactDOM.render(
                 <Route path="/create">
                     <CreateVot />
                 </Route>
+                <Route path="/vot/:id" children={<VotPage />} />
                 <Route path="/list">
                     <VotList />
                 </Route>
