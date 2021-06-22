@@ -1,7 +1,7 @@
 import React from "react"
 import { Card, Button } from "react-bootstrap"
 
-const Vot = ({ title, option, setSelect, selectStatus }) => {
+const Vot = ({ id, title, option, setSelect, selectStatus }) => {
 
     function select(event) {
         selectStatus.current = true
@@ -22,7 +22,7 @@ const Vot = ({ title, option, setSelect, selectStatus }) => {
                     })}
                 </Card.Body>
             </Card>
-        </React.Fragment>
+        </React.Fragment >
     );
 };
 

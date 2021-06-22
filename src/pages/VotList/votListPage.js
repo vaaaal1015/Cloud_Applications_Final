@@ -6,7 +6,6 @@ import { API_GET_VOT } from "../../global/constants";
 async function fetchData(setListData) {
     const res = await fetch(API_GET_VOT)
     const list = await res.json()
-    console.log(list);
     setListData(list)
 }
 

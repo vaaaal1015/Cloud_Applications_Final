@@ -1,9 +1,9 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-const VotOption = ({ index, text, setOptions }) => {
+const VotOption = ({ index, text, setOption }) => {
     function optionChange(event) {
-        setOptions((prev) => {
+        setOption((prev) => {
             return prev.map((item, itemIndex) => {
                 return (index === itemIndex) ? event.target.value : item;
             });

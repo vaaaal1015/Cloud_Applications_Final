@@ -3,6 +3,7 @@ import Bar from "../components/Bar"
 import Vot from "./components/vot"
 import { useParams } from "react-router-dom";
 import { API_GET_VOT, API_POST_VOTING } from "../../global/constants";
+import { useHistory } from "react-router-dom";
 
 async function fetchData(setVot, id) {
     const res = await fetch(`${API_GET_VOT}/${id}`)
@@ -25,6 +26,12 @@ const VotPage = () => {
     const [vot, setVot] = useState({ title: "", option: [] })
     const [select, setSelect] = useState(0);
     const selectStatus = useRef(false);
+    const history = useHistory();
+
+    const routeChange = () => {
+        const path = id + "/result";
+        history.push(path);
+    }
 
     useEffect(() => {
         fetchData(setVot, id);
@@ -34,14 +41,15 @@ const VotPage = () => {
         if (selectStatus.current) {
             fetchSetData(parseInt(id, 10), parseInt(select, 10)).then(() => {
                 console.log(select);
+                routeChange();
             })
         }
-    }, [id, select])
+    }, [select])
 
     return (
         <React.Fragment>
             <Bar />
-            <Vot title={vot.title} option={vot.option} setSelect={setSelect} selectStatus={selectStatus} />
+            <Vot id={id} title={vot.title} option={vot.option} setSelect={setSelect} selectStatus={selectStatus} />
         </React.Fragment>
     );
 };

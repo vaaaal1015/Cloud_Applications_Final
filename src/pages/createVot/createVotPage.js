@@ -2,16 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Bar from "../components/Bar"
 import VotForm from "./components/VotForm";
 import { API_POST_VOT } from "../../global/constants";
-
-// async function fetchSetData(data) {
-//     await fetch(`${API_PUT_VOT}/1`, {
-//         method: "PUT",
-//         headers: {
-//             'Content-type': 'application/json'
-//         },
-//         body: JSON.stringify({ title: '2222222222222222222' })
-//     })
-// }
+import { useHistory } from "react-router-dom";
 
 async function fetchSetData(data) {
     await fetch(API_POST_VOT, {
@@ -19,23 +10,31 @@ async function fetchSetData(data) {
         headers: {
             'Content-type': 'application/json'
         },
-        body: JSON.stringify({ data })
+        body: JSON.stringify({ title: data.title, option: data.option })
+        // body: JSON.stringify({ data })
     })
 }
 
 const CreateVot = () => {
     const [vot, setVot] = useState({});
+
     const submittingStatus = useRef(false);
+    const history = useHistory();
+
+    const routeChange = () => {
+        history.push("/list");
+    }
 
     useEffect(() => {
-        // fetchSetData();
-        console.log("vot");
+        if (submittingStatus.current) {
+            fetchSetData(vot).then(routeChange());
+        }
     }, [vot]);
 
     return (
         <React.Fragment>
             <Bar />
-            <VotForm setVot={setVot} />
+            <VotForm setVot={setVot} submittingStatus={submittingStatus} />
         </React.Fragment>
     );
 };

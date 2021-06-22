@@ -4,8 +4,8 @@ import { Card, Button } from "react-bootstrap";
 import VotTitle from "./VotTitle";
 import OptionList from "./OptionList";
 
-const VotForm = ({ setVot }) => {
-    const [options, setOptions] = useState(["", ""])
+const VotForm = ({ setVot, submittingStatus }) => {
+    const [option, setOption] = useState(["", ""])
 
     const [title, setTitle] = useState("")
 
@@ -15,13 +15,14 @@ const VotForm = ({ setVot }) => {
     // }
 
     function addOption() {
-        setOptions((prev) => {
+        setOption((prev) => {
             return [...prev, ""]
         })
     }
 
     function create() {
-        setVot({ title: { title }, options: { options } })
+        submittingStatus.current = true;
+        setVot({ title: title, option: option })
     }
 
     return (
@@ -29,7 +30,7 @@ const VotForm = ({ setVot }) => {
             <Card style={{ width: "60%", margin: "auto", boxShadow: "4px 8px 16px 0 rgba(0, 0, 0, 0.5)" }}>
                 <Card.Body>
                     <VotTitle text={title} setTitle={setTitle} />
-                    <OptionList options={options} setOptions={setOptions} />
+                    <OptionList option={option} setOption={setOption} />
                     <Button className="myFont" size="sm" variant="outline-success" onClick={addOption} style={{ width: "auto" }}>
                         增加選項
                     </Button>
