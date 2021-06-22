@@ -1,24 +1,12 @@
 import React from "react"
-import { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap"
-import { API_GET_DATA } from "../../../global/constants"
 
-const Vot = () => {
-    const [title, setTitle] = useState("")
-    const [options, setOptions] = useState([])
+const Vot = ({ title, option, setSelect, selectStatus }) => {
 
-    async function fetchData() {
-        const res = await fetch(API_GET_DATA)
-        const item = await res.json()
-        setTitle(item[0].title)
-        setOptions(item[0].options)
-        // console.log(item[0].title)
-        // console.log(item[0].options)
-    }
-
-    useEffect(() => {
-        fetchData()
-    }, [])
+    function select(event) {
+        selectStatus.current = true
+        setSelect(event.target.value)
+    };
 
     return (
         <React.Fragment>
@@ -27,9 +15,9 @@ const Vot = () => {
                     <h1>{title}</h1>
                 </Card.Header>
                 <Card.Body className="text-center myFont">
-                    {options.map((text, index) => {
+                    {option.map((text, index) => {
                         return (
-                            <Button key={index} size="lg" style={{ width: "70%", marginBottom: "16px" }} variant="outline-success">{text}</Button>
+                            <Button value={index + 1} key={index} onClick={select} size="lg" style={{ width: "70%", marginBottom: "16px" }} variant="outline-success">{text}</Button>
                         );
                     })}
                 </Card.Body>

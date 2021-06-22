@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "./pages/home/homePage"
 import CreateVot from "./pages/createVot/createVotPage"
 import VotPage from "./pages/vot/votPage"
-import VotList from "./pages/VotList/votListPage"
+import VotList from "./pages/votList/votListPage"
 
 ReactDOM.render(
     <React.StrictMode>
@@ -26,6 +26,9 @@ ReactDOM.render(
                 <Route path="/">
                     <HomePage />
                 </Route>
+                {/* <Route path="/result/:id">
+                    <div>new page</div>
+                </Route> */}
             </Switch>
         </Router>
     </React.StrictMode >,

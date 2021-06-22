@@ -4,20 +4,24 @@ import { Card, Button } from "react-bootstrap";
 import VotTitle from "./VotTitle";
 import OptionList from "./OptionList";
 
-const VotForm = () => {
+const VotForm = ({ setVot }) => {
     const [options, setOptions] = useState(["", ""])
 
     const [title, setTitle] = useState("")
 
-    function log() {
-        console.log("title", title);
-        console.log("options", options);
-    }
+    // function log() {
+    //     console.log("title", title);
+    //     console.log("options", options);
+    // }
 
     function addOption() {
         setOptions((prev) => {
             return [...prev, ""]
         })
+    }
+
+    function create() {
+        setVot({ title: { title }, options: { options } })
     }
 
     return (
@@ -31,7 +35,7 @@ const VotForm = () => {
                     </Button>
                 </Card.Body>
                 <Card.Footer className="text-center myFont">
-                    <Button variant="success" size="lg" onClick={log} style={{ width: "80%" }}>
+                    <Button variant="success" size="lg" onClick={create} style={{ width: "80%" }}>
                         建立投票
                     </Button>
                 </Card.Footer>

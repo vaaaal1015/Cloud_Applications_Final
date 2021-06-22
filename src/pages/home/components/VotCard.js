@@ -40,7 +40,7 @@ const VotCard = () => {
                 {/* <Card.Header>id</Card.Header> */}
                 <Card.Body>
                     <Card.Text style={{ fontSize: "25px", padding: "45px 25px" }}>
-                        Some quick example text to build on the card title and
+                        Some quick example text to build on the card
                     </Card.Text>
                 </Card.Body>
             </Card>
